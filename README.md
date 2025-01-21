@@ -1,2 +1,2 @@
 # markbyte
-Markdown-based no-code blogsite poster
+For markdown-based no-code blogsite creation
