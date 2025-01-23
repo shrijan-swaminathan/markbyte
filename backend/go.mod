@@ -1,5 +1,5 @@
-module github.com/AnishLaddha/markbyte
+module github.com/shrijan-swaminathan/markbyte
 
-go 1.22.2
+go 1.23.5
 
 require github.com/go-chi/chi/v5 v5.2.0
