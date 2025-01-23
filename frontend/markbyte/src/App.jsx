@@ -1,4 +1,4 @@
-import Home from './Home.jsx'
+import Home from './Home/Home.jsx'
 function App() {
   return (
     <div>
