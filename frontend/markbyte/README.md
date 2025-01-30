@@ -1,0 +1,1 @@
+To install dependencies, run npm i once inside the markbyte project folder.
