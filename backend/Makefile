@@ -1,4 +1,4 @@
-BINARY_NAME=markbyte
+BINARY_NAME=.markbyte
 
 CMD_DIR=cmd
 
