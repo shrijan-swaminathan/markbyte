@@ -1,0 +1,202 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.content {
+    background: white;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ccc;
+}
+
+body.dark-mode .content {
+    background-color: #2d2d2d;
+    color: #ccc;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dark-mode-toggle:hover {
+    background: #555;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+    color: #ddd;
+}
+
+/* Code Blocks */
+
+
+body.dark-mode pre {
+    background: #1e1e1e;
+    color: #f8f8f2;
+}
+
+/* Inline Code */
+code {
+    background: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+body.dark-mode code {
+    background: #444;
+    color: #f8f8f2;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    background: white;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode table {
+    background: #333;
+    color: #ccc;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+body.dark-mode table, 
+body.dark-mode th, 
+body.dark-mode td {
+    border: 1px solid #555;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+body.dark-mode th {
+    background-color: #444;
+}
+
+/* Footnotes */
+.footnotes {
+    font-size: 14px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+body.dark-mode .footnotes {
+    border-top: 1px solid #555;
+}
+
+/* Blockquote Styling */
+blockquote {
+    border-left: 5px solid #3498db;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background: #f9f9f9;
+    color: #333;
+    font-style: italic;
+}
+
+body.dark-mode blockquote {
+    background: #333;
+    color: #ccc;
+    border-left: 5px solid #77b5fe;
+}
+
+/* Centering Images */
+img {
+    max-width: 80%;
+    display: block;
+    margin: 20px auto;
+}
+
+/* Line Blocks */
+.line-block {
+    display: block;
+    white-space: pre-wrap;
+    font-family: monospace;
+    padding-left: 10px;
+    border-left: 3px solid #3498db;
+    margin: 10px 0;
+}
+
+body.dark-mode .line-block {
+    border-left: 3px solid #77b5fe;
+}
+
+
+/* Code Blocks */
+pre {
+    background: #272822 !important;  /* Dark background for code blocks */
+    color: #f8f8f2 !important;       /* Light text */
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: monospace;
+    border: none;
+    box-shadow: none;
+}
+
+/* Chroma Syntax Highlighting */
+pre code {
+    background: none !important;  /* Prevents overriding Chroma's colors */
+    color: inherit !important;    /* Ensures color is applied from Chroma */
+    font-size: 14px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    display: block; /* Ensures code takes up full width inside pre */
+}
+
+/* Dark Mode Code Blocks */
+body.dark-mode pre {
+    background: #1e1e1e !important; /* Darker background in dark mode */
+    color: #f8f8f2 !important;
+}
+
+body.dark-mode pre code {
+    background: none !important;
+    color: inherit !important;
+}
