@@ -26,5 +26,5 @@ go.work.sum
 
 
 # backend executables
-backend/.markbyte
+backend/markbyte
 backend/cmd/static/*.html
