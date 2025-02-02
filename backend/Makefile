@@ -1,11 +1,11 @@
-BINARY_NAME=.markbyte
+BINARY_NAME=markbyte
 
 CMD_DIR=cmd
 
 build:
 	go build -o $(BINARY_NAME) $(CMD_DIR)/*.go
 
-run: build
+run: clean build
 	./$(BINARY_NAME)
 
 clean:
