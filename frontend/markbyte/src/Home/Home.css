@@ -32,7 +32,7 @@ body {
 }
 
 .home-container {
-    max-width: 4000px;
+    max-width: 1500px;
     margin: 0 auto;
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
@@ -195,4 +195,13 @@ body {
 img, svg {
     max-width: 100%;
     height: auto;
+}
+
+.page-logo-2{
+    position: absolute;
+    top: 10px;   /* Adjust as needed */
+    left: 20px;  /* Adjust as needed */
+    width: 80px;  /* Adjust the size */
+    height: auto;
+    border-radius: var(--border-radius);
 }

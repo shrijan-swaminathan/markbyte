@@ -9,6 +9,7 @@ function Home() {
     return (
         <div className="App">
             <header className="header">
+                    <img src="src/assets/MarkByte Logo.jpg" alt="MarkByte Logo" className="page-logo-2" />
                     <button className="login-button" onClick={() => navigate('/login')}>Login &nbsp;<CiLogin /></button>
                     <button className="signup-button" onClick={() => navigate('/signup')}>Sign Up</button>
             </header>
