@@ -51,9 +51,7 @@ function Home() {
             </button>
           )}
         </div>
-        <button className="signup-button" onClick={() => navigate("/signup")}>
-          Sign Up
-        </button>
+        { !isAuthenticated && <button className="signup-button" onClick={() => navigate("/signup")}>Sign Up</button>}
       </header>
       <section className="hero">
         <div className="hero-content">
