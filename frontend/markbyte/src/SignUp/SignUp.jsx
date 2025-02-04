@@ -3,11 +3,15 @@ import './Signup.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaUser, FaLock } from 'react-icons/fa';
+import { useAuth } from '../AuthContext/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const error = false;
     const handleSignUp = () => {
         console.log('Username:', username);
         console.log('Password:', password);
@@ -21,6 +25,8 @@ function SignUp() {
           })
           .then(function (response) {
             console.log(response);
+            login(response.data.token, { name: username });
+            navigate('/');
           })
           .catch(function (error) {
             console.log(error);
@@ -48,6 +54,7 @@ function SignUp() {
                                 value={username} 
                                 onChange={(e) => setUsername(e.target.value)} 
                                 placeholder="Username" 
+                                required
                             />
                         </div>
                         <div className="input-container">
@@ -57,6 +64,7 @@ function SignUp() {
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
                                 placeholder="Password" 
+                                required
                             />
                         </div>
                         <button type="submit">Sign Up</button>

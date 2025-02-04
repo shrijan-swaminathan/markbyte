@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
+import { CiWarning } from "react-icons/ci";
 import axios from 'axios';
-import { useAuth } from '../AuthContext/useAuth.jsx';
+import { useAuth } from '../AuthContext/AuthContext'
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
-    const { setIsAuthenticated } = useAuth();
+    const { login } = useAuth();
     const handleLogin = () => {
         axios.post('http://localhost:8080/login', {
             username: username,
@@ -19,14 +21,18 @@ function Login() {
             }
           })
           .then(function (response) {
-            console.log("JWT Token:", response.data.token);
-            localStorage.setItem('token', response.data.token);
-            setIsAuthenticated(true);
+            // if (response.)
+            login(response.data.token, { name: username });
             navigate('/');
           })
           .catch(function (error) {
-            console.log(error);
-        });
+            setErrorMsg('Login failed. Please try again.');
+            // Clear the error message after 10 seconds
+            setTimeout(() => {
+            setErrorMsg('');
+            }, 3000);
+          })
+        
     }
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,6 +49,7 @@ function Login() {
             <div className="login-container">
                 <div className="login-box">
                     <h2>Login</h2>
+                    {errorMsg && <div className="error-message"><CiWarning />{errorMsg}</div>}
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-container">
                             <FaUser className="icon" />
@@ -51,6 +58,7 @@ function Login() {
                                 value={username} 
                                 onChange={(e) => setUsername(e.target.value)} 
                                 placeholder="Username" 
+                                required
                             />
                         </div>
 
@@ -61,6 +69,7 @@ function Login() {
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
                                 placeholder="Password" 
+                                required
                             />
                         </div>
 
@@ -69,6 +78,7 @@ function Login() {
                     <p className="signup-link">Don't have an account? <a href="/signup">Sign up</a></p>
                 </div>
             </div>
+
         </div>
     );
 }
