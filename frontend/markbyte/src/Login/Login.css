@@ -46,15 +46,36 @@
     color: #333;
     font-size: 24px;
 }
-
-/* Input fields */
-.login-form input {
+/* Input container styling */
+.input-container {
+    position: relative;
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Icon styling */
+.input-icon {
+    position: absolute;
+    left: 12px;
+    color: gray;
+    font-size: 18px;
+}
+
+/* Consolidated input styling */
+.input-container input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Extra left padding for the icon */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: #aaa;
 }
 
 /* Login button */

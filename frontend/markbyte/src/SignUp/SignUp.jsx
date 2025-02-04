@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Signup.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaUser, FaLock } from 'react-icons/fa';
 
 function SignUp() {
     const [username, setUsername] = useState('');
@@ -40,8 +41,24 @@ function SignUp() {
                 <div className="signup-box">
                     <h2>Sign Up</h2>
                     <form className="signup-form" onSubmit={handleSubmit}>
-                        <input type="text" value = {username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-                        <input type="password" value = {password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                        <div className="input-container">
+                            <FaUser className="icon" />
+                            <input 
+                                type="text" 
+                                value={username} 
+                                onChange={(e) => setUsername(e.target.value)} 
+                                placeholder="Username" 
+                            />
+                        </div>
+                        <div className="input-container">
+                            <FaLock className="icon" />
+                            <input 
+                                type="password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} 
+                                placeholder="Password" 
+                            />
+                        </div>
                         <button type="submit">Sign Up</button>
                     </form>
                     <p className="login-link">Already have an acccount? <a href="/login">Log in</a></p>

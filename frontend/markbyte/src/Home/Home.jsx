@@ -9,23 +9,25 @@ function Home() {
     return (
         <div className="App">
             <header className="header">
-                    <img src="src/assets/MarkByte Logo.jpg" alt="MarkByte Logo" className="page-logo-2" />
+                    <div className="logo-container">
+                        <img src="src/assets/MarkByte Logo.jpg" alt="MarkByte Logo" className="page-logo-2" />
+                        <span className="logo-text">arkByte</span>
+                    </div>
                     <button className="login-button" onClick={() => navigate('/login')}>Login &nbsp;<CiLogin /></button>
                     <button className="signup-button" onClick={() => navigate('/signup')}>Sign Up</button>
             </header>
-            <div className="home-container">
-                <section className="hero">
+            <section className="hero">
                     <div className="hero-content">
                         <h1>Welcome to MarkByte</h1>
                         <p className="tagline">Where your thoughts find their digital home</p>
                     </div>
-                </section>
+            </section>
+            <div className="home-container">
 
                 <section className="user-welcome">
                     <div className="welcome-card">
                         <h2>Hello, {name}</h2>
                         <p>Ready to start writing?</p>
-                        <button className="cta-button">Create New Post</button>
                     </div>
                 </section>
 

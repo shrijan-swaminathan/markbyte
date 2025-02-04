@@ -25,7 +25,7 @@
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: #f8f4f4;
     margin: 0;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: var(--background-color);
+    background-color: #f8f4f4;
 }
 
 .login-button {
@@ -60,13 +60,11 @@ body {
     border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    animation: fadeIn 0.8s ease-out;
     font: inherit;
     display: flex;
     height: 90%;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-speed) ease;
 }
 
 .signup-button {
@@ -76,13 +74,11 @@ body {
     border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    animation: fadeIn 0.8s ease-out;
     font: inherit;
     display: flex;
     height: 90%;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-speed) ease;
     margin-left: 1rem;
 }
 
@@ -98,19 +94,18 @@ body {
 }
 
 .hero {
-    min-height: 60vh;
+    min-height: 50vh;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background: linear-gradient(-45deg, var(--primary-color), #0181af, var(--primary-color));
     background-size: 200% 200%;
     color: #FFFFFF;
-    border-radius: var(--border-radius);
     margin-top: var(--spacing-md); /* Adjusted for fixed header */
     animation: gradientFlow 15s ease infinite;
     box-shadow: 0 4px 15px rgba(0,59,92,0.2);
-    transition: all var(--transition-speed) ease;
 }
 
 
@@ -138,27 +133,7 @@ body {
     transition: all var(--transition-speed) ease;
 }
 
-.cta-button {
-    background: var(--primary-color);
-    color: #FFFFFF;
-    border: none;
-    padding: var(--spacing-sm) calc(var(--spacing-md) * 1.5);
-    border-radius: calc(var(--border-radius) / 2);
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    will-change: transform, box-shadow;
-}
 
-.cta-button:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,59,92,0.3);
-}
 
 .posts-grid {
     display: grid;
@@ -197,11 +172,23 @@ img, svg {
     height: auto;
 }
 
-.page-logo-2{
+.logo-container {
     position: absolute;
-    top: 10px;   /* Adjust as needed */
-    left: 20px;  /* Adjust as needed */
-    width: 80px;  /* Adjust the size */
-    height: auto;
-    border-radius: var(--border-radius);
+    top: 10px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Makes it clickable */
 }
+
+.page-logo-2 {
+    width: 80px;
+    height: auto;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
