@@ -9,6 +9,8 @@ on:
       - 'backend/**'
     branches: [ "main" ]
   pull_request:
+    paths:
+        - 'backend/**'
     branches: [ "main" ]
 
 jobs:
@@ -21,6 +23,8 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.23'
+    - name: Move to folder
+      run: cd backend
 
     - name: Build
       run: make build
