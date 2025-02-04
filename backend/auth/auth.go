@@ -93,3 +93,9 @@ func JWTAuthMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
+
+func ResetUsers() {
+	mu.Lock()
+	defer mu.Unlock()
+	users = map[string]string{}
+}

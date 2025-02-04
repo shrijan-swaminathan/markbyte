@@ -11,3 +11,9 @@ run: clean build
 clean:
 	rm -f $(BINARY_NAME)
 	rm -f $(CMD_DIR)/static/*.html
+
+fmt:
+	go fmt ./...
+
+test:
+	go test ./...
