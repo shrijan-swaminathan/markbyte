@@ -21,11 +21,15 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.23'
-    - name: Move to folder
-      run: cd backend
+
+    - name: Move to folder and build
+      run: |
+        cd backend
+        make build
 
     - name: Build
-      run: make build
 
     - name: Test
-      run: make test
+      run: |
+        cd backend
+        make test
