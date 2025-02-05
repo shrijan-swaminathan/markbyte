@@ -40,17 +40,17 @@ jobs:
         cd backend
         go mod tidy
         go mod download
+
+    - name: Build
+      run: |
+        cd backend
+        make build
     
     - name: Upload binary artifact
       uses: actions/upload-artifact@v4
       with:
         name: backend-binary
         path: backend/markbyte 
-
-    - name: Build
-      run: |
-        cd backend
-        make build
 
     - name: Test
       run: |
