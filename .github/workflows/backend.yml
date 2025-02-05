@@ -41,7 +41,7 @@ jobs:
         go mod tidy
         go mod download
     
-    name: Upload binary artifact
+    - name: Upload binary artifact
       uses: actions/upload-artifact@v3
       with:
         name: backend-binary
