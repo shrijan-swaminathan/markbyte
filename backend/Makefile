@@ -17,3 +17,9 @@ fmt:
 
 test:
 	go test ./...
+
+docker-build:
+	DOCKER_BUILDKIT=1 docker build -t markbyte-backend .
+
+docker-run:
+	docker run -p 8080:8080 markbyte-backend
