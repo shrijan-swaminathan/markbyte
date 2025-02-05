@@ -42,7 +42,7 @@ jobs:
         go mod download
     
     - name: Upload binary artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: backend-binary
         path: backend/markbyte 
