@@ -21,6 +21,11 @@ jobs:
         go-version: '1.23'
         cache-dependency-path: backend/go.sum
 
+    - name: Download Go modules  # New step to ensure ~/go/pkg/mod exists
+      run: |
+        cd backend
+        go mod download
+
     - name: Cache Go modules
       uses: actions/cache@v3
       with:
@@ -28,13 +33,8 @@ jobs:
           ~/go/pkg/mod  # Caching the Go module cache directory
         key: ${{ runner.os }}-go-${{ hashFiles('backend/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-
 
-    - name: Download Go modules  # New step to ensure ~/go/pkg/mod exists
-      run: |
-        cd backend
-        go mod download
-        
+          ${{ runner.os }}-go-
     - name: Build
       run: |
         cd backend
