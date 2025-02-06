@@ -25,9 +25,22 @@ function SignUp() {
           })
           .then(function (response) {
             console.log(response);
-            login(response.data.token, { name: username });
-            navigate('/');
-          })
+            axios.post('http://localhost:8080/login', {
+                username: username,
+                password: password
+              }, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+              .then(function (response) {
+                login(response.data.token, { name: username });
+                navigate('/');
+              })
+              .catch(function (error) { 
+                console.log(error);
+              });
+            })
           .catch(function (error) {
             console.log(error);
         });

@@ -16,16 +16,10 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes gradientFlow {
-    0%   { background-position: 0% 50%; }
-    25%  { background-position: 50% 50%; }
-    50%  { background-position: 100% 50%; }
-    75%  { background-position: 150% 50%; }
-    100% { background-position: 200% 50%; } 
+
+.App{
+    position: relative;
 }
-
-
-
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     color: var(--text-color);
@@ -36,7 +30,7 @@ body {
 }
 
 .home-container {
-    max-width: 1500px;
+    max-width: 3000px;
     margin: 0 auto;
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
@@ -51,9 +45,11 @@ body {
     padding-top: 1rem;
     position: relative;
     width: 100%;
+    height: 2000px;
     top: 0;
     left: 0;
     z-index: 1000;
+    height: auto;
     background-color: #f8f4f4;
 }
 
@@ -109,10 +105,8 @@ body {
     color: #FFFFFF;
     margin-top: var(--spacing-md);
     box-shadow: 0 4px 15px rgba(0, 59, 92, 0.2);
-    background: radial-gradient(circle, var(--primary-color), #0087b8);
-    background-size: 300% 300%;
-    background-blend-mode: screen;
-    animation: gradientFlow 30s infinite linear alternate;
+    background: linear-gradient(135deg, var(--primary-color), grey 50%, var(--secondary-color));
+
 }
 
 
@@ -138,18 +132,7 @@ body {
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-md);
     transition: all var(--transition-speed) ease;
-}
-
-
-
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-sm);
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-    animation-delay: 0.8s;
+    width: 20%;
 }
 
 /* Responsive adjustments */
@@ -198,4 +181,106 @@ img, svg {
     font-weight: bold;
     color: var(--text-color);
 }
+
+.welcome-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post-button {
+    align-self: flex-end;
+    margin-top: 1rem;
+    width: auto;
+    height: 40px;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.post-button:hover {
+    background-color: var(--secondary-color);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-icon{
+    font-size: 6rem;
+    animation: spin 3s linear infinite;
+    color: white;
+}
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 0.9;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: fadeIn2 0.5s ease-out forwards;
+}
+
+.loading-screen.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.loading-text{
+    margin-top: 2rem;
+}
+
+.discover{
+    margin-top: 1rem;
+    background: linear-gradient(340deg, var(--primary-color), grey 50%, var(--secondary-color));
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    height: 40rem;
+    margin-bottom: 1rem;
+    transition: all var(--transition-speed) ease;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 59, 92, 0.2);
+}
+  
+  
 
