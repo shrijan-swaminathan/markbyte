@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useEffect, useState, useRef } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
-import { FaFileUpload } from "react-icons/fa";
+import { FaFileUpload, FaPen, FaPenAlt } from "react-icons/fa";
 import { IconButton } from "@mui/material";
 import axios from "axios";
 
@@ -27,6 +27,7 @@ function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpen, setIsOpen] = useState(false);
   const [fileName, setFileName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const fileInputRef = useRef(null);
   const handleIconButtonClick = () => {
     fileInputRef.current.click();
@@ -46,24 +47,45 @@ function Home() {
   };
 
   const handleUploadFile = () => {
+    setIsLoading(true);
     const file = fileInputRef.current.files[0];
     const formData = new FormData();
-    // fetch JWT token from local storage
     const token = localStorage.getItem("token");
     formData.append("file", file);
-    axios.post("http://localhost:8080/upload", formData, {
+
+    axios
+      .post("http://localhost:8080/upload", formData, {
         headers: {
-          "Authorization": `Bearer ${token}`,
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then(function (response) {
         console.log(response);
+
+        // Handle fade-out animation after a successful upload
+        setTimeout(() => {
+          document.querySelector(".loading-screen")?.classList.add("fade-out");
+          setTimeout(() => {
+            setIsLoading(false);
+            // Open the link to the hosted site after the upload completes
+            window.open(
+              `http://localhost:8080/static/${fileName.split(".")[0]}.html`,
+              "_blank",
+              "noopener,noreferrer"
+            );
+          }, 500);
+        }, 4000);
+
+        // Close modal after upload
+        setIsOpen(false);
       })
       .catch(function (error) {
         console.log(error);
-    });
-    setIsOpen(false);
-    handleRemoveFile();
+      })
+      .finally(() => {
+        // Cleanup
+        handleRemoveFile();
+      });
   };
 
   useEffect(() => {
@@ -113,6 +135,12 @@ function Home() {
           </button>
         )}
       </header>
+      {isLoading && (
+        <div className="loading-screen">
+          <FaPenAlt className="loading-icon" />
+          <p className="loading-text">Uploading...</p>
+        </div>
+      )}
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to MarkByte</h1>
@@ -120,7 +148,7 @@ function Home() {
         </div>
       </section>
       <div className="home-container">
-        <section className="user-welcome">
+        {isAuthenticated && <section className="user-welcome">
           <div className="welcome-card">
             <div>
               {isAuthenticated && (
@@ -144,11 +172,10 @@ function Home() {
               )}
             </div>
           </div>
-        </section>
+        </section>}
         <section className="discover">
           <div className="discover-container">
-            <h1>Discover🔎</h1>
-            <hr className="discover-hr"></hr>
+            <h1 style={{ fontSize: "2.5rem" }}>Discover</h1>
           </div>
         </section>
       </div>
@@ -252,6 +279,9 @@ function Home() {
           </Box>
         </Box>
       </Modal>
+      <footer className="footer" style={{ textAlign: "center" }}>
+        <p>&copy; Group 11. Rishab Pangal, Anish Laddha, Shrijan Swaminathan</p>
+      </footer>
     </div>
   );
 }

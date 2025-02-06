@@ -30,7 +30,7 @@ body {
 }
 
 .home-container {
-    max-width: 1500px;
+    max-width: 3000px;
     margin: 0 auto;
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-md);
@@ -135,18 +135,6 @@ body {
     width: 20%;
 }
 
-
-
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-sm);
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-    animation-delay: 0.8s;
-}
-
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .home-container {
@@ -218,7 +206,81 @@ img, svg {
 .post-button:hover {
     background-color: var(--secondary-color);
 }
-  
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-icon{
+    font-size: 6rem;
+    animation: spin 3s linear infinite;
+    color: white;
+}
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 0.9;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: fadeIn2 0.5s ease-out forwards;
+}
+
+.loading-screen.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.loading-text{
+    margin-top: 2rem;
+}
+
+.discover{
+    margin-top: 1rem;
+    background: linear-gradient(340deg, var(--primary-color), grey 50%, var(--secondary-color));
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    height: 40rem;
+    margin-bottom: 1rem;
+    transition: all var(--transition-speed) ease;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 59, 92, 0.2);
+}
   
   
 

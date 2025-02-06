@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
+    // ideally need to move this to cookies
 
     if (storedToken && storedUser) {
       try {
