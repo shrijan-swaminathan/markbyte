@@ -9,6 +9,7 @@ import (
 
 	"github.com/go-chi/jwtauth/v5"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/shrijan-swaminathan/markbyte/backend/db"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -16,7 +17,13 @@ var jwtSecret = []byte("secretkey")
 
 var TokenAuth = jwtauth.New("HS256", jwtSecret, nil)
 
-var users = map[string]string{}
+var userDB db.UserDB
+
+// var users = map[string]string{}
+
+func SetUserDB(repo db.UserDB) {
+	userDB = repo
+}
 
 func HashPassword(password string) (string, error) {
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
@@ -94,8 +101,8 @@ func JWTAuthMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func ResetUsers() {
-	mu.Lock()
-	defer mu.Unlock()
-	users = map[string]string{}
-}
+// func ResetUsers() {
+// 	mu.Lock()
+// 	defer mu.Unlock()
+// 	users = map[string]string{}
+// }
