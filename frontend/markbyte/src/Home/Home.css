@@ -272,10 +272,9 @@ img, svg {
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     color: white;
-    cursor: pointer;
     font: inherit;
     border: none;
-    height: 40rem;
+    height: 3.5rem;
     margin-bottom: 1rem;
     transition: all var(--transition-speed) ease;
     width: 100%;

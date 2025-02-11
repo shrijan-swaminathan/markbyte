@@ -175,7 +175,7 @@ function Home() {
         </section>}
         <section className="discover">
           <div className="discover-container">
-            <h1 style={{ fontSize: "2.5rem" }}>Discover</h1>
+            <h1 style={{ fontSize: "1.5rem" }}>Discover</h1>
           </div>
         </section>
       </div>
@@ -279,9 +279,6 @@ function Home() {
           </Box>
         </Box>
       </Modal>
-      <footer className="footer" style={{ textAlign: "center" }}>
-        <p>&copy; Group 11. Rishab Pangal, Anish Laddha, Shrijan Swaminathan</p>
-      </footer>
     </div>
   );
 }

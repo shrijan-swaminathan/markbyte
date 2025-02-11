@@ -9,4 +9,47 @@
     --border-radius: 12px;
     --transition-speed: 0.3s;
 }
+
+/* Make sure the root container fills the full viewport height */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* The outermost container */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures it takes the full viewport height */
+  }
+  
+  /* Ensures that the content section expands while pushing the footer down */
+  .content {
+    flex: 1;
+  }
+  
+  /* Footer styling */
+  .footer {
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  color: white;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  position: relative;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   
