@@ -4,12 +4,9 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"sync"
 
 	"github.com/shrijan-swaminathan/markbyte/backend/db"
 )
-
-var mu sync.Mutex
 
 type UserRequest struct {
 	Username string `json:"username"`
@@ -50,7 +47,11 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "User created successfully"})
+	err = json.NewEncoder(w).Encode(map[string]string{"message": "User created successfully"})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -78,5 +79,9 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]string{"token": token})
+	err = json.NewEncoder(w).Encode(map[string]string{"token": token})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }

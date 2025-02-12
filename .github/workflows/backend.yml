@@ -40,17 +40,24 @@ jobs:
         cd backend
         go mod tidy
         go mod download
+    
+    - name: Run GolangCI-Lint
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest  # Uses the latest stable version
+        working-directory: backend
+        args: --timeout=5m
 
     - name: Build
       run: |
         cd backend
         make build
     
-    - name: Upload binary artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: backend-binary
-        path: backend/markbyte 
+    # - name: Upload binary artifact
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: backend-binary
+    #     path: backend/markbyte 
 
     - name: Test
       run: |

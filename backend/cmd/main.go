@@ -19,5 +19,8 @@ func main() {
 
 	port := ":8080"
 	fmt.Printf("Starting server on %s\n", port)
-	http.ListenAndServe(port, server.SetupRouter())
+	err = http.ListenAndServe(port, server.SetupRouter())
+	if err != nil {
+		fmt.Printf("Failed to start server: %v\n", err)
+	}
 }

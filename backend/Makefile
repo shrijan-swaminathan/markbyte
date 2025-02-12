@@ -18,6 +18,9 @@ fmt:
 test:
 	go test ./...
 
+lint:
+	golangci-lint run ./...
+
 docker-build:
 	DOCKER_BUILDKIT=1 docker build -t markbyte-backend .
 

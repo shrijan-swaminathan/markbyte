@@ -13,6 +13,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type contextAuthKey string
+
 var jwtSecret = []byte("secretkey")
 
 var TokenAuth = jwtauth.New("HS256", jwtSecret, nil)
@@ -75,6 +77,8 @@ func ValidateJWT(tokenStr string) (*jwt.Token, error) {
 	return token, nil
 }
 
+var usernameKey = contextAuthKey("username")
+
 func JWTAuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		authHeader := r.Header.Get("Authorization")
@@ -95,14 +99,8 @@ func JWTAuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
-		ctx := context.WithValue(r.Context(), "username", claims["username"].(string))
+		ctx := context.WithValue(r.Context(), usernameKey, claims["username"].(string))
 
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
-
-// func ResetUsers() {
-// 	mu.Lock()
-// 	defer mu.Unlock()
-// 	users = map[string]string{}
-// }
