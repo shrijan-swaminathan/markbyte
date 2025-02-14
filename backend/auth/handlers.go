@@ -9,8 +9,9 @@ import (
 )
 
 type UserRequest struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Username string  `json:"username"`
+	Password string  `json:"password"`
+	Email    *string `json:"email"`
 }
 
 func HandleSignup(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,7 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	newUser := &db.User{
 		Username: usrReq.Username,
 		Password: hashedPassword,
+		Email:    usrReq.Email,
 	}
 
 	_, err = userDB.CreateUser(r.Context(), newUser)
