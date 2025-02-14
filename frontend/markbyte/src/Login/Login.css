@@ -113,36 +113,34 @@
 }
 
 .error-message {
-    background-color: red;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center; /* Aligns icon and text vertically */
-    justify-content: center; /* Optionally center content horizontally */
-  }
-  
-  .error-message svg {
-    margin-right: 8px; /* Adds space between the icon and text */
-  }
-
-  .icon-container {
-    position: absolute; /* Position the icon container */
-    top: -35px; /* Align to the top edge */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for centering */
-    background-color:white;
-    padding-bottom: 3px;
-    border-radius:100%;
-
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center; /* Aligns icon and text vertically */
+  justify-content: center; /* Optionally center content horizontally */
 }
 
-.user-icon{
-    font-size: 60px;
-    color: gray;
-    padding: 8px;
+.error-message svg {
+  margin-right: 8px; /* Adds space between the icon and text */
 }
-  
+
+.icon-container {
+  position: absolute; /* Position the icon container */
+  top: -35px; /* Align to the top edge */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  background-color: white;
+  padding-bottom: 3px;
+  border-radius: 100%;
+}
+
+.user-icon {
+  font-size: 60px;
+  color: gray;
+  padding: 8px;
+}

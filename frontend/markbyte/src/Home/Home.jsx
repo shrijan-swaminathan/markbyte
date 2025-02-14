@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
 import { useState, useRef } from "react";
 import { useMediaQuery } from "@mui/material";
+import { PiScribbleThin } from "react-icons/pi";
 import { FaPenAlt } from "react-icons/fa";
 import axios from "axios";
 
@@ -82,6 +83,7 @@ function Home() {
   };
 
   const isSmallScreen = useMediaQuery("(max-width:470px)");
+  const isSmallScreen2 = useMediaQuery("(min-width:611px)");
 
   return (
     <div className="App relative bg-[#011A29] text-white overflow-hidden">
@@ -146,9 +148,16 @@ function Home() {
       <section className="text-white py-32 mt-32 z-20">
         <div className="container mx-auto px-4 z-20">
           <div className="max-w-3xl mx-auto text-center z-10">
-            <h1 className="text-5xl font-bold mb-4 leading-tight z-10">
-              Welcome to MarkByte.
-            </h1>
+            <div className="relative">
+              <h1 className="text-5xl font-bold mb-4 leading-tight z-10">
+                Welcome to MarkByte.
+              </h1>
+              {isSmallScreen2 && <img
+                src="src/assets/pen.png"
+                alt="Pen"
+                className="absolute -top-[200%] left-[46%] transform -translate-x-1/2 z-20 w-40 h-40"
+              />}
+            </div>
             <p className="tagline text-xl mb-8 text-gray-200">
               Where your thoughts find their digital home
             </p>
@@ -178,11 +187,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <div>
-        <div className="absolute left-1/2 bottom-[60%] transform -translate-x-1/2 -translate-y-1/2 rotate-45 text-white text-[50px] p-6 sm:p-8 z-50">
-          <FaPenAlt />
-        </div>
-      </div>
+      <div></div>
     </div>
   );
 }

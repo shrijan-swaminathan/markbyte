@@ -16,7 +16,7 @@ function BloggerHome() {
             alt="MarkByte Logo"
             className={styles.pageLogo2}
           />
-          {!isSmallScreen && <span className={styles.logoText2}>arkByte</span>}
+          {!isSmallScreen && <span className={styles.logoText2}>arkByte | Dashboard</span>}
         </div>
         <div style={{ display: "flex" }}>
           <button className={`${styles.loginButton} relative`} onClick={logout}>

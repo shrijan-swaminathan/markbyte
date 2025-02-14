@@ -74,6 +74,6 @@ body {
 }
 
 .loginButton:hover{
-  background: var(--primary-color);
+  background: var(--secondary-color);
   color: white;
 }
