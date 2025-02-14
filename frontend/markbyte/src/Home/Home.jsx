@@ -2,29 +2,14 @@ import "./Home.css";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
-import { useEffect, useState, useRef } from "react";
-import { Modal, Box, Typography, Button } from "@mui/material";
-import { FaFileUpload, FaPen, FaPenAlt } from "react-icons/fa";
-import { IconButton } from "@mui/material";
+import { useState, useRef } from "react";
+import { useMediaQuery } from "@mui/material";
+import { FaPenAlt } from "react-icons/fa";
 import axios from "axios";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "2px solid #084464",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: "10px",
-  width: "48%",
-  height: "50%",
-};
 function Home() {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpen, setIsOpen] = useState(false);
   const [fileName, setFileName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -88,52 +73,69 @@ function Home() {
       });
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  const handleHomeUpload = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const userName = user?.name || "";
+  const isSmallScreen = useMediaQuery("(max-width:470px)");
 
   return (
-    <div className="App">
+    <div className="App relative bg-[#011A29] text-white overflow-hidden">
+      <div className="absolute left-1/4 top-1/4 h-[500px] w-[400px] -rotate-100 rounded-[150px] bg-blue-500 opacity-25 blur-[150px] z-0"></div>
+      <div className="absolute left-[-15%] top-1/6 h-[450px] w-[350px] -rotate-15 rounded-[120px] bg-blue-500 opacity-20 blur-[130px] z-0"></div>
+      <div className="absolute right-[-10%] bottom-1/4 h-[550px] w-[450px] rotate-40 rounded-[130px] bg-blue-500 opacity-15 blur-[140px] z-0"></div>
+      <div className="absolute left-1/3 top-0 h-[200px] w-[300px] rotate-20 rounded-[100px] bg-blue-500 opacity-10 blur-[120px] z-0"></div>
       <header className="header">
-        <div className="logo-container">
+        <div className="logo-container" onClick={() => navigate("/")}>
           <img
-            src="src/assets/MarkByte Logo.jpg" // Make sure path is correct
+            src="src/assets/markbytealt.png"
             alt="MarkByte Logo"
             className="page-logo-2"
           />
-          {windowWidth > 470 && <span className="logo-text">arkByte</span>}
+          {!isSmallScreen && <span className="logo-text">arkByte</span>}
         </div>
-        <div>
-          {!isAuthenticated && (
-            <button className="login-button" onClick={() => navigate("/login")}>
-              Login &nbsp;
-              <CiLogin />
-            </button>
-          )}
+        <div className="header-links space-x-12 ml-14">
+          <a
+            href="/"
+            className="relative text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full text-lg"
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            className="relative text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full text-lg"
+          >
+            About
+          </a>
         </div>
-        <div>
-          {isAuthenticated && (
-            <button className="login-button" onClick={logout}>
+        <div style={{ display: "flex" }}>
+          {!isAuthenticated ? (
+            <>
+              <button
+                className="login-button relative"
+                onClick={() => navigate("/login")}
+              >
+                Login &nbsp;
+                <CiLogin />
+              </button>
+              <button
+                className="signup-button relative"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </button>
+            </>
+          ) : (
+            <button className="login-button relative" onClick={logout}>
               Logout &nbsp;
               <CiLogout />
             </button>
           )}
         </div>
-        {!isAuthenticated && (
-          <button className="signup-button" onClick={() => navigate("/signup")}>
-            Sign Up
-          </button>
-        )}
       </header>
       {isLoading && (
         <div className="loading-screen">
@@ -141,144 +143,46 @@ function Home() {
           <p className="loading-text">Uploading...</p>
         </div>
       )}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>Welcome to MarkByte</h1>
-          <p className="tagline">Where your thoughts find their digital home</p>
+      <section className="text-white py-32 mt-32 z-20">
+        <div className="container mx-auto px-4 z-20">
+          <div className="max-w-3xl mx-auto text-center z-10">
+            <h1 className="text-5xl font-bold mb-4 leading-tight z-10">
+              Welcome to MarkByte.
+            </h1>
+            <p className="tagline text-xl mb-8 text-gray-200">
+              Where your thoughts find their digital home
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="animate-lift">
+                <div className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-[10px] w-fit h-[43px] mx-auto shadow-xl">
+                  <a
+                    href="#"
+                    onClick={() => handleHomeUpload()}
+                    className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
+                  >
+                    Upload Your First Blog&rarr;
+                  </a>
+                </div>
+              </div>
+              <div className="animate-lift">
+                <div className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-[10px] w-fit h-[43px] mx-auto shadow-xl">
+                  <a
+                    href="#"
+                    className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
+                  >
+                    Start Reading &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <div className="home-container">
-        {isAuthenticated && <section className="user-welcome">
-          <div className="welcome-card">
-            <div>
-              {isAuthenticated && (
-                <>
-                  <h2>Hello, {userName}.</h2>
-                  <p>Ready to start writing? ✍️</p>
-                </>
-              )}
-            </div>
-
-            <div>
-              {!isAuthenticated && (
-                <h2>Create an account or log in to get started</h2>
-              )}
-            </div>
-            <div>
-              {isAuthenticated && (
-                <button className="post-button" onClick={() => setIsOpen(true)}>
-                  Upload a Post
-                </button>
-              )}
-            </div>
-          </div>
-        </section>}
-        <section className="discover">
-          <div className="discover-container">
-            <h1 style={{ fontSize: "1.5rem" }}>Discover</h1>
-          </div>
-        </section>
+      <div>
+        <div className="absolute left-1/2 bottom-[60%] transform -translate-x-1/2 -translate-y-1/2 rotate-45 text-white text-[50px] p-6 sm:p-8 z-50">
+          <FaPenAlt />
+        </div>
       </div>
-
-      <Modal
-        open={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-          setFileName("");
-        }}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{
-              fontFamily: "DM Sans",
-              fontWeight: "bold",
-              textAlign: "center",
-              fontSize: "2.5rem",
-              mb: 2,
-            }} // Center title, add margin
-          >
-            Upload a Markdown File
-          </Typography>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            <IconButton
-              aria-label="upload"
-              sx={{ fontSize: "9rem", color: "#084464" }}
-              onClick={handleIconButtonClick}
-            >
-              <FaFileUpload />
-            </IconButton>
-            <input
-              ref={fileInputRef}
-              type="file"
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-            {!fileName && (
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ mt: 1, fontSize: "1rem", fontFamily: "DM Sans" }}
-              >
-                Select a file to upload
-              </Typography>
-            )}
-            {fileName && (
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ mt: 1, fontSize: "1rem", fontFamily: "DM Sans" }}
-              >
-                {fileName}
-              </Typography>
-            )}
-            {fileName && (
-              <Button
-                onClick={handleUploadFile}
-                sx={{
-                  mt: 1,
-                  fontSize: "0.8rem",
-                  fontFamily: "DM Sans",
-                  bgcolor: "#084464",
-                  color: "white",
-                  borderRadius: "5px",
-                  p: 1,
-                }}
-              >
-                <Typography variant="body2">Upload File</Typography>
-              </Button>
-            )}
-            {fileName && (
-              <Button
-                onClick={handleRemoveFile}
-                sx={{
-                  mt: 1,
-                  fontSize: "0.8rem",
-                  fontFamily: "DM Sans",
-                  bgcolor: "red",
-                  color: "white",
-                  borderRadius: "5px",
-                  p: 1,
-                }}
-              >
-                <Typography variant="body2">Remove File</Typography>
-              </Button>
-            )}
-          </Box>
-        </Box>
-      </Modal>
     </div>
   );
 }
