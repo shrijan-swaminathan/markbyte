@@ -2,85 +2,11 @@ import "./Home.css";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
-import { useState, useRef } from "react";
 import { useMediaQuery } from "@mui/material";
-import { PiScribbleThin } from "react-icons/pi";
-import { FaPenAlt } from "react-icons/fa";
-import axios from "axios";
 
 function Home() {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
-  const [fileName, setFileName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const fileInputRef = useRef(null);
-  const handleIconButtonClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log("File selected:", file);
-      setFileName(file.name);
-    }
-  };
-
-  const handleRemoveFile = () => {
-    setFileName(""); // Clear file name state
-    fileInputRef.current.value = ""; // Clear file input
-  };
-
-  const handleUploadFile = () => {
-    setIsLoading(true);
-    const file = fileInputRef.current.files[0];
-    const formData = new FormData();
-    const token = localStorage.getItem("token");
-    formData.append("file", file);
-
-    axios
-      .post("http://localhost:8080/upload", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(function (response) {
-        console.log(response);
-
-        // Handle fade-out animation after a successful upload
-        setTimeout(() => {
-          document.querySelector(".loading-screen")?.classList.add("fade-out");
-          setTimeout(() => {
-            setIsLoading(false);
-            // Open the link to the hosted site after the upload completes
-            window.open(
-              `http://localhost:8080/static/${fileName.split(".")[0]}.html`,
-              "_blank",
-              "noopener,noreferrer"
-            );
-          }, 500);
-        }, 4000);
-
-        // Close modal after upload
-        setIsOpen(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(() => {
-        // Cleanup
-        handleRemoveFile();
-      });
-  };
-
-  const handleHomeUpload = () => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    } else {
-      navigate("/login");
-    }
-  };
 
   const isSmallScreen = useMediaQuery("(max-width:470px)");
   const isSmallScreen2 = useMediaQuery("(min-width:611px)");
@@ -139,12 +65,6 @@ function Home() {
           )}
         </div>
       </header>
-      {isLoading && (
-        <div className="loading-screen">
-          <FaPenAlt className="loading-icon" />
-          <p className="loading-text">Uploading...</p>
-        </div>
-      )}
       <section className="text-white py-32 mt-32 z-20">
         <div className="container mx-auto px-4 z-20">
           <div className="max-w-3xl mx-auto text-center z-10">
@@ -165,8 +85,7 @@ function Home() {
               <div className="animate-lift">
                 <div className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-[10px] w-fit h-[43px] mx-auto shadow-xl">
                   <a
-                    href="#"
-                    onClick={() => handleHomeUpload()}
+                    href="/signup"
                     className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
                   >
                     Upload Your First Blog&rarr;
@@ -176,7 +95,7 @@ function Home() {
               <div className="animate-lift">
                 <div className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-[10px] w-fit h-[43px] mx-auto shadow-xl">
                   <a
-                    href="#"
+                    href="/login"
                     className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
                   >
                     Start Reading &rarr;

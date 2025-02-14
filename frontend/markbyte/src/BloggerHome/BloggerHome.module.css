@@ -77,3 +77,58 @@ body {
   background: var(--secondary-color);
   color: white;
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 0.9; }
+  to { opacity: 0; } /* 0.5s fade-out */
+}
+
+.loadingIcon {
+  font-size: 6rem;
+  animation: spin 3s linear infinite;
+  color: white;
+}
+
+
+.loadingScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: fadeIn2 0.5s ease-out forwards;
+}
+
+.loadingScreen.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+.loadingText {
+  margin-top: 2rem;
+}
