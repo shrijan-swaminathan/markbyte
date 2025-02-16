@@ -117,7 +117,8 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top:0px;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -126,14 +127,14 @@
 }
 
 .error-message svg {
-  margin-right: 8px; /* Adds space between the icon and text */
+  margin-right: 8px;
 }
 
 .icon-container {
-  position: absolute; /* Position the icon container */
-  top: -35px; /* Align to the top edge */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust for centering */
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   padding-bottom: 3px;
   border-radius: 100%;

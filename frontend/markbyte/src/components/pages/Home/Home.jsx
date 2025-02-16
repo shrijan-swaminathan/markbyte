@@ -1,7 +1,7 @@
 import "./Home.css";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useMediaQuery } from "@mui/material";
 
 function Home() {
@@ -89,16 +89,6 @@ function Home() {
                     className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
                   >
                     Upload Your First Blog&rarr;
-                  </a>
-                </div>
-              </div>
-              <div className="animate-lift">
-                <div className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-[10px] w-fit h-[43px] mx-auto shadow-xl">
-                  <a
-                    href="/login"
-                    className="bg-white text-[#084464] font-semibold py-3 px-8 rounded-[10px] hover:bg-gray-100 transition duration-300 shadow-xl translate-y-0.5"
-                  >
-                    Start Reading &rarr;
                   </a>
                 </div>
               </div>

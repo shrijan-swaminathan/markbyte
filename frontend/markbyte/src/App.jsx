@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home/Home";
-import Login from "./Login/Login";
-import SignUp from "./SignUp/SignUp";
-import BloggerHome from "./BloggerHome/BloggerHome";
-import { useAuth } from "./AuthContext/AuthContext";
+import Home from "./components/pages/Home/Home";
+import Login from "./components/pages/Login/Login";
+import SignUp from "./components/pages/SignUp/SignUp";
+import BloggerHome from "./components/pages/BloggerHome/BloggerHome";
+import { useAuth } from "./contexts/AuthContext";
+import { Toaster } from "./components/ui/Toaster";
 import "./App.css";
 
 // function Footer() {
@@ -28,6 +29,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Toaster />
       </Router>
   );
 }

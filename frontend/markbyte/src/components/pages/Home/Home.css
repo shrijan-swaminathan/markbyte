@@ -25,6 +25,9 @@
 .App {
   position: relative;
   min-height: 100vh;
+  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 180px 180px;
 }
 
 body {

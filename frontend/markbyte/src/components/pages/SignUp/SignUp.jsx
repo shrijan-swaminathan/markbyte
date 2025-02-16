@@ -3,7 +3,7 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
