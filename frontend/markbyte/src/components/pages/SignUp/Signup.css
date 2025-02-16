@@ -27,7 +27,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
 }
 
 /* The login box */
@@ -38,6 +37,8 @@
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    color: black;
+    position: relative;
 }
 
 /* Login title */
@@ -110,4 +111,21 @@
 
 .login-link a:hover {
     text-decoration: underline;
+}
+
+.icon-container {
+    position: absolute; /* Position the icon container */
+    top: -35px; /* Align to the top edge */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color:white;
+    padding-bottom: 3px;
+    border-radius:100%;
+
+}
+
+.user-icon{
+    font-size: 60px;
+    color: gray;
+    padding: 8px;
 }
